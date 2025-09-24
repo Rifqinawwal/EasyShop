@@ -1,0 +1,18 @@
+/* Mengubah warna dan ukuran semua ikon di dalam nav-link */
+.nav-link .material-symbols-outlined {
+    font-size: 1.5rem; /* Membuat ikon sedikit lebih besar dari teks biasa */
+    color: #333; /* Mengubah warna ikon menjadi abu-abu gelap */
+    vertical-align: middle; /* Agar ikon sejajar dengan teks di sekitarnya */
+}
+
+.ms-5 {
+    margin-left: 100px !important; /* Kamu bisa ubah angka 40px ini sesukamu */
+}
+.carousel-container .carousel-item {
+    height: 450px !important; /* <-- ATUR TINGGI CAROUSEL YANG KAMU INGINKAN DI SINI */
+}
+.carousel-container .carousel-item img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
