@@ -28,27 +28,21 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
-    <div class="p-5 mb-4 bg-light rounded-3 text-center">
-        <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">Selamat Datang di EasyShop</h1>
-            <p class="fs-4">Temukan berbagai produk fashion berkualitas dengan harga terjangkau.</p>
-            <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">Lihat Semua Produk</a>
-        </div>
-    </div>
-
+<br>
     <h2 class="mb-4">Produk Terbaru</h2>
 
     <div class="row">
         @forelse($latestproducts as $products)
-            <div class="col-md-4 mb-4">
+            <div class="col-md-2 mb-3">
                 <div class="card h-100">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ $products->name }}</h5>
-                        <p class="card-text text-muted">Rp {{ number_format($products->price) }}</p>
-                        <a href="#" class="btn btn-primary mt-auto">Lihat Detail</a>
-                    </div>
+                <img src="{{ asset('products/' . $products->image) }}" class="card-img-top" alt="{{ $products->name }}">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-semibold">{{ $products->name }}</h5>
+                    <p class="card-size text-secondary">Size {{ $products->size }}</p>
+                    <p class="card-text text-danger">Rp {{ number_format($products->price) }}</p>
+                    <a href="#" class="btn btn-primary mt-auto">Lihat Detail</a>
                 </div>
+            </div>
             </div>
         @empty
             <div class="col">

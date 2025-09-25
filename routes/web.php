@@ -1,23 +1,40 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 
+// Halaman Depan
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Halaman untuk melihat semua produk (untuk publik)
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 
+// Halaman Dashboard default dari Breeze
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-
+// Grup route yang memerlukan login
 Route::middleware('auth')->group(function () {
+    // Route untuk profile (bawaan Breeze)
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Grup route untuk produk milik user
+    Route::prefix('user/products')->name('user.products.')->group(function () {
+        Route::get('/', [UserProductController::class, 'index'])->name('index');
+        Route::get('/create', [UserProductController::class, 'create'])->name('create');
+        Route::post('/', [UserProductController::class, 'store'])->name('store');
+        Route::get('/{product}/edit', [UserProductController::class, 'edit'])->name('edit');
+        Route::put('/{product}', [UserProductController::class, 'update'])->name('update');
+        Route::delete('/{product}', [UserProductController::class, 'destroy'])->name('destroy');
+    });
 });
 
 require __DIR__.'/auth.php';
