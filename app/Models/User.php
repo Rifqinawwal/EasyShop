@@ -50,4 +50,10 @@ class User extends Authenticatable
 {
     return $this->hasMany(\App\Models\Product::class);
 }
+
+// Di dalam class User
+public function cartItems()
+{
+    return $this->hasMany(CartItem::class);
+}
 }

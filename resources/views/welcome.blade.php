@@ -40,7 +40,22 @@
                     <h5 class="card-title fw-semibold">{{ $products->name }}</h5>
                     <p class="card-size text-secondary">Size {{ $products->size }}</p>
                     <p class="card-text text-danger">Rp {{ number_format($products->price) }}</p>
-                    <a href="#" class="btn btn-primary mt-auto">Lihat Detail</a>
+                    <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+                        @auth
+                            <a href="#" class="btn btn-primary">Beli Sekarang</a>
+
+                            <form action="{{ route('cart.add', $products) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-primary">
+                                    <span class="material-symbols-outlined">
+                                        add_shopping_cart
+                                    </span>
+                                </button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-primary w-100">Login untuk Membeli</a>
+                        @endauth
+                    </div>
                 </div>
             </div>
             </div>

@@ -45,7 +45,7 @@
     <div class="d-flex align-items-center">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('cart.index') }}" class="nav-link">>
                     <span class="material-symbols-outlined">
                         shopping_cart
                     </span>

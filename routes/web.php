@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CartController;
 
 // Halaman Depan
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -26,6 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
+
     // Grup route untuk produk milik user
     Route::prefix('user/products')->name('user.products.')->group(function () {
         Route::get('/', [UserProductController::class, 'index'])->name('index');
@@ -34,6 +39,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/{product}/edit', [UserProductController::class, 'edit'])->name('edit');
         Route::put('/{product}', [UserProductController::class, 'update'])->name('update');
         Route::delete('/{product}', [UserProductController::class, 'destroy'])->name('destroy');
+
+    
     });
 });
 

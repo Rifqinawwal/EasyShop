@@ -20,7 +20,14 @@
                                 <h5 class="card-title">{{ $product->name }}</h5>
                                 <p class="card-size text-secondary">Size {{ $product->size }}</p>
                                 <p class="card-text text-danger">Rp {{ number_format($product->price) }}</p>
-                                <a href="#" class="btn btn-primary mt-auto">Lihat Detail</a>
+                                @auth
+    <form action="{{ route('cart.add', $product) }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-primary w-100">Tambah ke Keranjang</button>
+    </form>
+@else
+    <a href="{{ route('login') }}" class="btn btn-primary w-100">Login untuk Membeli</a>
+@endauth
                             </div>
                         </div>
                     </div>
