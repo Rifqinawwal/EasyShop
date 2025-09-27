@@ -42,18 +42,18 @@
                     <p class="card-text text-danger">Rp {{ number_format($products->price) }}</p>
                     <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
                         @auth
-                            <a href="#" class="btn btn-primary">Beli Sekarang</a>
+                            <a href="#" class="btn btn-primary btn-sm">Beli Sekarang</a>
 
                             <form action="{{ route('cart.add', $products) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-outline-primary">
+                                <button type="submit" class="btn btn-outline-primary btn-sm">
                                     <span class="material-symbols-outlined">
                                         add_shopping_cart
                                     </span>
                                 </button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-primary w-100">Login untuk Membeli</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary w-100 btn-sm">Login untuk Membeli</a>
                         @endauth
                     </div>
                 </div>

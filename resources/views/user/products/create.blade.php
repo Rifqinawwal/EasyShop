@@ -25,6 +25,15 @@
                 <input type="number" class="form-control" id="stock" name="stock" required>
             </div>
             <div class="mb-3">
+                <label for="category_id" class="form-label">Kategori</label>
+                <select class="form-select" id="category_id" name="category_id" required>
+                    <option selected disabled value="">Pilih Kategori...</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="description" class="form-label">Deskripsi</label>
                 <textarea class="form-control" id="description" name="description" rows="3"></textarea>
             </div>
