@@ -39,7 +39,7 @@
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title fw-semibold">{{ $products->name }}</h5>
                     <p class="card-size text-secondary">Size {{ $products->size }}</p>
-                    <p class="card-text text-danger">Rp {{ number_format($products->price) }}</p>
+                    <p class="card-text text-success">Rp {{ number_format($products->price) }}</p>
                     <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
                         @auth
                             <a href="#" class="btn btn-primary btn-sm">Beli Sekarang</a>

@@ -68,7 +68,6 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="{{ route('user.products.index') }}">Produk Saya</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">

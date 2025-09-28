@@ -49,7 +49,7 @@
                 </tbody>
             </table>
             <div class="text-end">
-                <h3 class="text-danger">Total: Rp {{ number_format($total) }}</h3>
+                <h3 class="text-success">Total: Rp {{ number_format($total) }}</h3>
                 <a href="#" class="btn btn-primary">Lanjutkan ke Checkout</a>
             </div>
         @else

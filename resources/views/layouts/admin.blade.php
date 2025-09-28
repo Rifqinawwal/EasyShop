@@ -6,8 +6,8 @@
   <title>EasyShop Admin | @yield('title')</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -25,9 +25,13 @@
     </a>
 
     <div class="sidebar">
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+        <div class="image">
+          <img src="{{ Auth::user()->avatar ? asset('avatars/' . Auth::user()->avatar) : 'https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/img/user2-160x160.jpg' }}" 
+               class="img-circle elevation-2" alt="User Image" style="width: 34px; height: 34px; object-fit: cover;">
+        </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="{{ route('profile.edit') }}" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -49,8 +53,7 @@
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <a href="{{ route('logout') }}" class="nav-link"
-                    onclick="event.preventDefault();
-                            this.closest('form').submit();">
+                    onclick="event.preventDefault(); this.closest('form').submit();">
                   <i class="nav-icon fas fa-sign-out-alt"></i>
                   <p>Logout</p>
                 </a>
@@ -71,8 +74,8 @@
     <strong>Copyright &copy; 2024-2025 EasyShop.</strong> All rights reserved.
   </footer>
 </div>
-<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/js/adminlte.min.js"></script>
 </body>
 </html>
