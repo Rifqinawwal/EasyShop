@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Informasi Profil</h3>
                 </div>
-                <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('home') }}" enctype="multipart/form-data">
                     @csrf
                     @method('patch')
 

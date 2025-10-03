@@ -34,26 +34,32 @@
     <div class="row">
         @forelse($latestproducts as $products)
             <div class="col-md-2 mb-3">
-                <div class="card h-100">
-                <img src="{{ asset('products/' . $products->image) }}" class="card-img-top" alt="{{ $products->name }}">
+            <div class="card h-100">
+                <a href="{{ route('products.show', $products) }}">
+                    <img src="{{ asset('products/' . $products->image) }}" class="card-img-top" alt="{{ $products->name }}">
+                </a>
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title fw-semibold">{{ $products->name }}</h5>
-                    <p class="card-size text-secondary">Size {{ $products->size }}</p>
-                    <p class="card-text text-success">Rp {{ number_format($products->price) }}</p>
+                    <h5 class="card-title">
+                        <a href="{{ route('products.show', $products) }}" class="text-dark fw-bold text-decoration-none">{{ $products->name }}</a>
+                    </h5>
+                    @if($products->size)
+                        <p class="card-text text-muted small">Size: {{ $products->size }}</p>
+                    @endif
+                    <p class="card-text text-success fw-bold">Rp {{ number_format($products->price) }}</p>
+                    
                     <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
                         @auth
-                            <a href="#" class="btn btn-primary btn-sm">Beli Sekarang</a>
-
+                            <a href="#" class="btn btn-primary">Beli Sekarang</a>
                             <form action="{{ route('cart.add', $products) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-outline-primary btn-sm">
+                                <button type="submit" class="btn btn-outline-primary">
                                     <span class="material-symbols-outlined">
                                         add_shopping_cart
                                     </span>
                                 </button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-primary w-100 btn-sm">Login untuk Membeli</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary w-100">Login untuk Membeli</a>
                         @endauth
                     </div>
                 </div>

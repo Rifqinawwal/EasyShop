@@ -21,7 +21,7 @@
   </nav>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{ route('home') }}" class="brand-link">
-      <span class="brand-text font-weight-light">EasyShop Admin</span>
+      <span class="brand-text font-weight-light">Dashboard</span>
     </a>
 
     <div class="sidebar">
@@ -31,7 +31,7 @@
                class="img-circle elevation-2" alt="User Image" style="width: 34px; height: 34px; object-fit: cover;">
         </div>
         <div class="info">
-          <a href="{{ route('profile.edit') }}" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="{{ route('dashboard') }}" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -40,7 +40,7 @@
           <li class="nav-item">
             <a href="{{ route('dashboard') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
+              <p>Edit Profile</p>
             </a>
           </li>
           <li class="nav-item">
@@ -60,6 +60,18 @@
             </form>
           </li>
         </ul>
+
+        @if(Auth::user()->is_admin)
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+            <li class="nav-header">AREA ADMIN</li>
+            <li class="nav-item">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                    <i class="nav-icon fas fa-user-shield"></i>
+                    <p>Admin Dashboard</p>
+                </a>
+            </li>
+        </ul>
+        @endif
       </nav>
       </div>
     </aside>

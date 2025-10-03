@@ -8,6 +8,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+
 
 // Halaman Depan
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -15,12 +18,20 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Halaman untuk melihat semua produk (untuk publik)
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
 // Halaman Dashboard default dari Breeze
 Route::get('/dashboard', function () {
     $user = Auth::user(); // Ambil data user yang login
     return view('dashboard', ['user' => $user]); // Kirim variabel $user ke view
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// GRUP ROUTE KHUSUS ADMIN
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::resource('categories', AdminCategoryController::class);
+    // Nanti route untuk manajemen user, kategori, dll. ditaruh di sini
+});
 
 // Grup route yang memerlukan login
 Route::middleware('auth')->group(function () {
