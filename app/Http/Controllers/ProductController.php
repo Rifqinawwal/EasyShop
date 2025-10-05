@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -18,5 +19,15 @@ class ProductController extends Controller
     {
         // Laravel akan otomatis mencari produk berdasarkan ID di URL (Route Model Binding)
         return view('products.show', compact('product'));
+    }
+
+        // METHOD BARU UNTUK MENAMPILKAN PRODUK PER KATEGORI
+    public function byCategory(Category $category)
+    {
+        // Ambil produk yang berelasi dengan kategori ini, lalu paginasi
+        $products = $category->products()->latest()->paginate(12);
+
+        // Kirim data produk dan data kategori ke view
+        return view('products.by_category', compact('products', 'category'));
     }
 }

@@ -33,6 +33,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     // Nanti route untuk manajemen user, kategori, dll. ditaruh di sini
 });
 
+// Route untuk menampilkan produk berdasarkan kategori
+Route::get('/categories/{category}', [ProductController::class, 'byCategory'])->name('products.by_category');
+
 // Grup route yang memerlukan login
 Route::middleware('auth')->group(function () {
     // Route untuk profile (bawaan Breeze)
