@@ -50,7 +50,7 @@
             </table>
             <div class="text-end">
                 <h3 class="text-success">Total: Rp {{ number_format($total) }}</h3>
-                <a href="#" class="btn btn-primary">Lanjutkan ke Checkout</a>
+                <a href="{{ route('checkout.index') }}" class="btn btn-primary">Lanjutkan ke Checkout</a>
             </div>
         @else
             <div class="alert alert-info text-center">

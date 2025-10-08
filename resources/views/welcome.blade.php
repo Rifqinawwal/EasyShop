@@ -7,6 +7,17 @@
 {{-- Mengisi konten halaman --}}
 @section('content')
 
+<style>
+    .btn-cart-icon {
+    padding: 0.2rem 0.4rem; /* Kurangi padding dari standar btn-sm */
+}
+
+.btn-cart-icon .material-symbols-outlined {
+    font-size: 1rem; /* Atur ukuran ikonnya di sini */
+    vertical-align: middle; /* Jaga ikon tetap di tengah tombol */
+}
+</style>
+
 <div id="carouselExampleInterval" class="carousel slide carousel-container" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active" >
@@ -49,17 +60,20 @@
                     
                     <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
                         @auth
-                            <a href="#" class="btn btn-primary">Beli Sekarang</a>
+                            <form action="{{ route('cart.buy_now', $products) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary btn-sm">Beli Sekarang</button>
+                            </form>
                             <form action="{{ route('cart.add', $products) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-outline-primary">
+                                <button type="submit" class="btn btn-outline-primary btn-sm btn-cart-icon">
                                     <span class="material-symbols-outlined">
                                         add_shopping_cart
                                     </span>
                                 </button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-primary w-100">Login untuk Membeli</a>
+                            <a href="{{ route('login') }}" class="btn btn-primary btn-sm w-100">Login untuk Membeli</a>
                         @endauth
                     </div>
                 </div>

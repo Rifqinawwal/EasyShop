@@ -7,6 +7,8 @@ use App\Http\Controllers\UserProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
@@ -36,6 +38,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 // Route untuk menampilkan produk berdasarkan kategori
 Route::get('/categories/{category}', [ProductController::class, 'byCategory'])->name('products.by_category');
 
+
+//route order
+Route::get('/order-success/{order}', [OrderController::class, 'show'])->name('order.success')->middleware('auth');
+
 // Grup route yang memerlukan login
 Route::middleware('auth')->group(function () {
     // Route untuk profile (bawaan Breeze)
@@ -55,9 +61,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/{product}/edit', [UserProductController::class, 'edit'])->name('edit');
         Route::put('/{product}', [UserProductController::class, 'update'])->name('update');
         Route::delete('/{product}', [UserProductController::class, 'destroy'])->name('destroy');
-
-    
     });
+
+    // route untuk checkout    
+    Route::post('/buy-now/{product}', [CartController::class, 'buyNow'])->name('cart.buy_now'); 
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index'); 
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+
 });
 
 require __DIR__.'/auth.php';

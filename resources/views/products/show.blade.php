@@ -6,7 +6,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-md-6">
-                <img src="{{ asset('products/' . $product->image) }}" class="img-fluid rounded" alt="{{ $product->name }}">
+                <img src="{{ asset('products/' . $product->image) }}" class="img-fluid rounded product-detail-img" alt="{{ $product->name }}">
             </div>
             <div class="col-md-6">
                 <h1 class="fw-bold">{{ $product->name }}</h1>

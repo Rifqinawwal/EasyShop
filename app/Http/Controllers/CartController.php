@@ -44,4 +44,22 @@ class CartController extends Controller
 
         return redirect()->route('cart.index')->with('success', 'Produk berhasil dihapus dari keranjang!');
     }
+
+    // app/Http/Controllers/CartController.php
+public function buyNow(Request $request, Product $product)
+{
+    $cartItem = Auth::user()->cartItems()->where('product_id', $product->id)->first();
+
+    if ($cartItem) {
+        $cartItem->increment('quantity');
+    } else {
+        Auth::user()->cartItems()->create([
+            'product_id' => $product->id,
+            'quantity' => 1,
+        ]);
+    }
+
+    // Langsung arahkan ke halaman checkout
+    return redirect()->route('checkout.index');
+}
 }
