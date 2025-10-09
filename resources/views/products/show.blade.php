@@ -20,7 +20,7 @@
 
                 <div class="d-flex justify-content-start align-items-center mt-4">
                     @auth
-                        <a href="#" class="btn btn-primary btn-lg me-2">Beli Sekarang</a>
+                        <a href="{{ route('checkout.index') }}" class="btn btn-primary btn-lg me-2">Beli Sekarang</a>
 
                         <form action="{{ route('cart.add', $product) }}" method="POST">
                             @csrf

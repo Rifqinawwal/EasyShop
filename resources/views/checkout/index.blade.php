@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container py-5">
-        <h1>Checkout</h1>
+        <h1 class="fw-bold">Checkout</h1>
         <div class="row mt-4">
             <div class="col-md-7">
                 <h4>Ringkasan Pesanan</h4>
@@ -36,16 +36,16 @@
                         <form action="{{ route('checkout.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nama Penerima</label>
+                                <label for="name" class="form-label fw-semibold">Nama Penerima</label>
                                 <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="address" class="form-label">Alamat Pengiriman</label>
+                                <label for="address" class="form-label fw-semibold">Alamat Pengiriman</label>
                                 <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="payment_method" class="form-label">Metode Pembayaran</label>
-                                <select class="form-select" id="payment_method" name="payment_method">
+                                <label for="payment_method" class="form-label fw-semibold">Metode Pembayaran</label>
+                                <select class="form-select fw-semibold" id="payment_method" name="payment_method">
                                     <option value="bank_transfer">Transfer Bank</option>
                                     <option value="cod">Cash on Delivery (COD)</option>
                                 </select>
