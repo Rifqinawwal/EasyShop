@@ -33,6 +33,29 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang!');
     }
 
+    public function update(Request $request, CartItem $cartItem)
+{
+    // Otorisasi
+    if ($cartItem->user_id !== Auth::id()) {
+        abort(403);
+    }
+
+    $action = $request->input('action');
+
+    if ($action == 'increase') {
+        $cartItem->increment('quantity');
+    } elseif ($action == 'decrease') {
+        if ($cartItem->quantity > 1) {
+            $cartItem->decrement('quantity');
+        } else {
+            // Jika kuantitas 1 dan dikurangi, hapus item
+            $cartItem->delete();
+        }
+    }
+
+    return redirect()->back()->with('success', 'Keranjang berhasil diperbarui.');
+}
+
     public function remove(CartItem $cartItem)
     {
         // Otorisasi: pastikan user hanya bisa menghapus item miliknya
